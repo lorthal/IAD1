@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Zadanie1", "Rozgrzewka3\Rozgrzewka3.vcxproj", "{21EC2CA3-2215-4774-B74E-E02A658AA566}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Debug|x64.ActiveCfg = Debug|x64
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Debug|x64.Build.0 = Debug|x64
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Debug|x86.ActiveCfg = Debug|Win32
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Debug|x86.Build.0 = Debug|Win32
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Release|x64.ActiveCfg = Release|x64
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Release|x64.Build.0 = Release|x64
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Release|x86.ActiveCfg = Release|Win32
+		{21EC2CA3-2215-4774-B74E-E02A658AA566}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E11A14F-9E98-458C-986B-F968FE34258B}
+	EndGlobalSection
+EndGlobal
