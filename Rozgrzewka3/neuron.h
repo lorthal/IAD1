@@ -26,6 +26,8 @@ public:
 
 	void SetNeuronError(double neuronError) { this->neuronError = neuronError; }
 
+	void SetMomentum(double momentum) { this->momentum = momentum; }
+
 protected:
 	double GetInputSum();
 
