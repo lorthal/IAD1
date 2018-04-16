@@ -31,18 +31,10 @@ NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFun
 	for (int i = 1; i < layersCount - 1; i++)
 	{
 		Layer layer = Layer(layersConfiguration[i], func, false, true);
-		//layer.SetConnections(layers.back());
+		layer.SetConnections(layers.back());
 		layers.push_back(layer);
-
 	}
 	CreateOutputLayer(layersConfiguration[layersCount - 1]);
-
-	for (int i = 1; i < layersCount; i++)
-	{
-		//Layer layer = Layer(layersConfiguration[i], func, false, true);
-		layers[i].SetConnections(layers[i - 1]);
-		//layers.push_back(layer);
-	}
 }
 
 void NeuralNet::Train(const std::vector<std::pair<double, double>> &initData)
@@ -63,7 +55,7 @@ void NeuralNet::CreateOutputLayer(const int &outputNeuronsCount)
 {
 	IActivationFunction * func = new IdentityFunction();
 	Layer layer = Layer(outputNeuronsCount, func, false, false);
-	//layer.SetConnections(layers.back());
+	layer.SetConnections(layers.back());
 	layers.push_back(layer);
 }
 
@@ -92,12 +84,10 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 
 	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
 	{
-		auto neuron = outputLayer.GetNeurons()[i];
-		double result = neuron->output;
 		std::cout.precision(17);
 		std::cout << "Input:     " << std::fixed << GetKeysFromMap(initData)[i] << std::endl;
 		std::cout << "Expected:  " << std::fixed << GetValuesFromMap(initData)[i] << std::endl;
-		std::cout << "Predicted: " << std::fixed << result << std::endl << std::endl;
+		std::cout << "Predicted: " << std::fixed << outputLayer.GetNeurons()[i]->output << std::endl << std::endl;
 	}
 }
 

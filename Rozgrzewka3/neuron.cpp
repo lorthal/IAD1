@@ -36,7 +36,6 @@ void Neuron::UpdateWeights(const double &learningRate)
 		c.weightDelta = learningRate * neuronError * c.neuron->output + momentum * c.previousWeightDelta;
 		c.previousWeightDelta = c.weightDelta;
 		c.weight = c.previousWeight + c.weightDelta;
-		//c.UpdateWeight(learningRate, neuronError, momentum);
 	}
 }
 
