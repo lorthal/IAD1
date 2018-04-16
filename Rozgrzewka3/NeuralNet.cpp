@@ -119,7 +119,7 @@ void NeuralNet::BackPropagation()
 		layers[i].ComputeNeuronErrors();
 	}
 
-	for (auto layer : layers)
+	for (auto& layer : layers)
 	{
 		layer.UpdateWeights(leariningRate);
 	}

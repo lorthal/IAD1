@@ -21,7 +21,7 @@ void Neuron::AddConnection(Connection &connection)
 void Neuron::AddErrorToNeighbours()
 {
 	if (connections.empty()) return;
-	for (auto c : connections)
+	for (auto& c : connections)
 	{
 		auto& neighbour = c.neuron;
 		neighbour->neighbourErrorSum += c.weight * neuronError;
@@ -30,7 +30,7 @@ void Neuron::AddErrorToNeighbours()
 
 void Neuron::UpdateWeights(const double &learningRate)
 {
-	for (auto c : connections)
+	for (auto& c : connections)
 	{
 		c.previousWeight = c.weight;
 		c.weightDelta = learningRate * neuronError * c.neuron->output + momentum * c.previousWeightDelta;
