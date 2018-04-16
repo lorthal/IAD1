@@ -12,7 +12,7 @@ public:
 
 	IActivationFunction * activationFunction;
 
-	double GetOutput() const { return output; }
+	double output;
 
 	void AddConnection(Connection &connection);
 
@@ -24,11 +24,10 @@ public:
 
 	virtual void ComputeOutput();
 
-	void SetNeuronError(const double &neuronError) { this->neuronError = neuronError; }
+	void SetNeuronError(double neuronError) { this->neuronError = neuronError; }
 
 protected:
 	double GetInputSum();
-	double output;
 
 private:
 

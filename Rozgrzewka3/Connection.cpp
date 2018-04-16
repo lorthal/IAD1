@@ -12,13 +12,5 @@ Connection::~Connection()
 
 double Connection::GetOutputXWeight() const
 {
-	return neuron->GetOutput() * weight;
-}
-
-void Connection::UpdateWeight(const double &learningRate, const double &neuronError, const double &momentum)
-{
-	previousWeight = weight;
-	weightDelta = learningRate * neuronError * neuron->GetOutput() + momentum * previousWeightDelta;
-	previousWeightDelta = weightDelta;
-	weight = previousWeight + weightDelta;
+	return neuron->output * weight;
 }

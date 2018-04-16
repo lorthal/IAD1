@@ -40,7 +40,7 @@ NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFun
 	for (int i = 1; i < layersCount; i++)
 	{
 		//Layer layer = Layer(layersConfiguration[i], func, false, true);
-		layers[i].SetConnections(layers.back());
+		layers[i].SetConnections(layers[i - 1]);
 		//layers.push_back(layer);
 	}
 }
@@ -69,7 +69,7 @@ void NeuralNet::CreateOutputLayer(const int &outputNeuronsCount)
 
 void NeuralNet::InitInputLayer(const std::vector<std::pair<double, double>> &initData)
 {
-	auto inputLayer = layers[0];
+	auto& inputLayer = layers[0];
 	int size = inputLayer.GetIsWithBias() ? inputLayer.GetNeurons().size() - 1 : inputLayer.GetNeurons().size();
 
 	for (int i = 0; i < size; i++)
@@ -82,7 +82,7 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 {
 	for (auto layer : layers)
 	{
-		for (auto neuron : layer.GetNeurons())
+		for (auto& neuron : layer.GetNeurons())
 		{
 			neuron->ComputeOutput();
 		}
@@ -93,7 +93,7 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
 	{
 		auto neuron = outputLayer.GetNeurons()[i];
-		double result = neuron->GetOutput();
+		double result = neuron->output;
 		std::cout.precision(17);
 		std::cout << "Input:     " << std::fixed << GetKeysFromMap(initData)[i] << std::endl;
 		std::cout << "Expected:  " << std::fixed << GetValuesFromMap(initData)[i] << std::endl;
@@ -105,11 +105,10 @@ void NeuralNet::ComputeOutputLayerError(const Layer &outputLayer, const std::vec
 {
 	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
 	{
-		auto neuron = outputLayer.GetNeurons()[i];
-		double output = neuron->GetOutput();
-		double neuronError = neuron->activationFunction->GetDerivativeFromOutput(output) * (GetValuesFromMap(initData)[i] - output);
-		neuron->SetNeuronError(neuronError);
-		neuron->AddErrorToNeighbours();
+		double& output = outputLayer.GetNeurons()[i]->output;
+		double neuronError = outputLayer.GetNeurons()[i]->activationFunction->GetDerivativeFromOutput(output) * (GetValuesFromMap(initData)[i] - output);
+		outputLayer.GetNeurons()[i]->SetNeuronError(neuronError);
+		outputLayer.GetNeurons()[i]->AddErrorToNeighbours();
 	}
 }
 

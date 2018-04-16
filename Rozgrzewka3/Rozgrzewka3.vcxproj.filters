@@ -75,9 +75,4 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Zadanie1.rc">
-      <Filter>Pliki zasobów</Filter>
-    </ResourceCompile>
-  </ItemGroup>
 </Project>

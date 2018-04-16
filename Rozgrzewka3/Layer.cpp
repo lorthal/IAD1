@@ -44,7 +44,7 @@ void Layer::SetConnections(const Layer &previousLayer)
 				continue;
 			}
 			double weight = static_cast<double>(rand() / static_cast<double>(RAND_MAX / (1 - (-1))));
-			Neuron n = *previousLayer.neurons[i];
+			Neuron& n = *previousLayer.neurons[i];
 			Connection connection = Connection(&n, weight);
 			neurons[j]->AddConnection(connection);
 		}
@@ -55,7 +55,7 @@ void Layer::ComputeNeuronErrors()
 {
 	for(auto i = 0; i < neurons.size(); i++)
 	{
-		Neuron n = *neurons[i];
+		Neuron& n = *neurons[i];
 		n.ComputeNeuronError();
 		n.AddErrorToNeighbours();
 	}
