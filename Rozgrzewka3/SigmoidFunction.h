@@ -7,9 +7,9 @@ public:
 	SigmoidFunction() {}
 	~SigmoidFunction() {}
 
-	double GetResult(double input) override;
-	double GetDerivativeFromOutput(double output) override;
-	double GetDerivativeFromInput(double input) override;
+	double GetResult(const double &input) override;
+	double GetDerivativeFromOutput(const double &output) override;
+	double GetDerivativeFromInput(const double &input) override;
 	
 };
 

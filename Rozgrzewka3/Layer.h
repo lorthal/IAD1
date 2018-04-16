@@ -5,21 +5,21 @@
 class Layer
 {
 public:
-	Layer(int neuronsCount, IActivationFunction* activation, bool isInputLayer, bool isWithBias);
+	Layer(const int &neuronsCount, IActivationFunction *activation, bool isInputLayer, bool isWithBias);
 	~Layer();
 
-	void SetConnections(const Layer *previousLayer);
+	void SetConnections(const Layer &previousLayer);
 
 	void ComputeNeuronErrors();
 
-	void UpdateWeights(double learningRate);
+	void UpdateWeights(const double &learningRate);
 
 	bool GetIsWithBias() const { return isWithBias; }
 
-	std::vector<Neuron> GetNeurons() const { return neurons; }
+	std::vector<Neuron*> GetNeurons() const { return neurons; }
 
 private:
-	std::vector<Neuron> neurons;
+	std::vector<Neuron*> neurons;
 	bool isWithBias;
 };
 

@@ -5,7 +5,7 @@ public:
 	IActivationFunction() {}
 	virtual ~IActivationFunction() {}
 
-	virtual double GetResult(double input) { return 99; }
-	virtual double GetDerivativeFromInput(double input) { return 99; }
-	virtual double GetDerivativeFromOutput(double output) { return 99; }
+	virtual double GetResult(const double &input) { return 99; }
+	virtual double GetDerivativeFromInput(const double &input) { return 99; }
+	virtual double GetDerivativeFromOutput(const double &output) { return 99; }
 };

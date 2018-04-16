@@ -9,33 +9,26 @@ public:
 
 	static std::vector<double> GetKeysFromMap(const std::vector<std::pair<double, double>> &map);
 
-	static std::vector<double> GetValuesFromMap(const std::vector<std::pair<double, double>> & map);
+	static std::vector<double> GetValuesFromMap(const std::vector<std::pair<double, double>> &map);
 
-	NeuralNet(std::vector<int> layersConfiguration, IActivationFunction* func, double learningRate);
+	NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate);
 
-	//void SetActivationFunc(ActivationFunction func) { activationFunc = func; }
-
-	void Train(std::vector<std::pair<double, double>> initData);
+	void Train(const std::vector<std::pair<double, double>> &initData);
 
 private:
 
 	std::vector<Layer> layers;
 	double leariningRate;
 
-	void CreateInputLayer(int inputNeuronsCount);
+	void CreateInputLayer(const int &inputNeuronsCount);
 
-	void CreateOutputLayer(int outputNeuronsCount);
+	void CreateOutputLayer(const int &outputNeuronsCount);
 
-	void InitInputLayer(std::vector<std::pair<double, double>> initData);
+	void InitInputLayer(const std::vector<std::pair<double, double>> &initData);
 
-	void Predict(Layer &outputLayer, std::vector<std::pair<double, double>> initData);
+	void Predict(const Layer &outputLayer, const std::vector<std::pair<double, double>> &initData);
 
-	static void ComputeOutputLayerError(Layer outputLayer, std::vector<std::pair<double, double>> initData);
+	static void ComputeOutputLayerError(const Layer &outputLayer, const std::vector<std::pair<double, double>> &initData);
 
 	void BackPropagation();
-	//int layerCount;
-	//std::vector<int> neuronsOnLayers;
-	//std::vector<std::vector<Neuron>> layers;
-
-	//ActivationFunction activationFunc;
 };

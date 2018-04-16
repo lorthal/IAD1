@@ -1,17 +1,17 @@
 #include "stdafx.h"
 #include "IdentityFunction.h"
 
-double IdentityFunction::GetResult(double input)
+double IdentityFunction::GetResult(const double & input)
 {
 	return input;
 }
 
-double IdentityFunction::GetDerivativeFromOutput(double output)
+double IdentityFunction::GetDerivativeFromOutput(const double & output)
 {
 	return 1;
 }
 
-double IdentityFunction::GetDerivativeFromInput(double input)
+double IdentityFunction::GetDerivativeFromInput(const double & input)
 {
 	return 1;
 }

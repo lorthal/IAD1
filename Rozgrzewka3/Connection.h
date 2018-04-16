@@ -1,13 +1,17 @@
 #pragma once
-#include "Neuron.h"
+
+class Neuron;
 
 class Connection
 {
 public:
-	Connection(Neuron neuron, double weight);
+	Connection(Neuron *neuron, const double &weight);
 	~Connection();
 
-	Neuron neuron;
+	double GetOutputXWeight() const;
+	void UpdateWeight(const double &learningRate, const double &neuronError, const double &momentum);
+
+	Neuron * neuron;
 	double weight;
 	double previousWeight;
 	double weightDelta;
