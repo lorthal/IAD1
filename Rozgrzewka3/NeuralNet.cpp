@@ -24,17 +24,19 @@ std::vector<double> NeuralNet::GetValuesFromMap(const std::vector<std::pair<doub
 	return  v;
 }
 
-NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate) : leariningRate(learningRate)
+NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate, const double &momentum, const bool &bias) : leariningRate(learningRate)
 {
 	int layersCount = layersConfiguration.size();
-	CreateInputLayer(layersConfiguration[0]);
+	CreateInputLayer(layersConfiguration[0], func, bias);
 	for (int i = 1; i < layersCount - 1; i++)
 	{
-		Layer layer = Layer(layersConfiguration[i], func, false, true);
+		Layer layer = Layer(layersConfiguration[i], func, false, bias);
 		layer.SetConnections(layers.back());
 		layers.push_back(layer);
 	}
-	CreateOutputLayer(layersConfiguration[layersCount - 1]);
+	CreateOutputLayer(layersConfiguration[layersCount - 1], func);
+
+	SetMomentum(momentum);
 }
 
 void NeuralNet::Train(const std::vector<std::pair<double, double>> &initData)
@@ -45,15 +47,24 @@ void NeuralNet::Train(const std::vector<std::pair<double, double>> &initData)
 	BackPropagation();
 }
 
-void NeuralNet::CreateInputLayer(const int &inputNeuronsCount)
+double NeuralNet::ComputeError(const std::vector<std::pair<double, double>> &initData)
 {
-	IActivationFunction * func = new IdentityFunction();
-	layers.push_back(Layer(inputNeuronsCount, func, true, true));
+	double error = 0;
+	for (int i = 0; i < layers.back().GetNeurons().size(); i ++)
+	{
+		error += (layers.back().GetNeurons()[i]->output - initData[i].second) * (layers.back().GetNeurons()[i]->output - initData[i].second);
+	}
+	error /= 2;
+	return error;
 }
 
-void NeuralNet::CreateOutputLayer(const int &outputNeuronsCount)
+void NeuralNet::CreateInputLayer(const int &inputNeuronsCount, IActivationFunction * func, const bool &bias)
 {
-	IActivationFunction * func = new IdentityFunction();
+	layers.push_back(Layer(inputNeuronsCount, func, true, bias));
+}
+
+void NeuralNet::CreateOutputLayer(const int &outputNeuronsCount, IActivationFunction * func)
+{
 	Layer layer = Layer(outputNeuronsCount, func, false, false);
 	layer.SetConnections(layers.back());
 	layers.push_back(layer);
@@ -112,5 +123,16 @@ void NeuralNet::BackPropagation()
 	for (auto& layer : layers)
 	{
 		layer.UpdateWeights(leariningRate);
+	}
+}
+
+void NeuralNet::SetMomentum(const double& momentum)
+{
+	for (auto& layer : layers)
+	{
+		for(auto& neuron : layer.GetNeurons())
+		{
+			neuron->SetMomentum(momentum);
+		}
 	}
 }
