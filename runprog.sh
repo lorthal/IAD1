@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #enter path to program here
-programpath='echo program'
+programpath='/mnt/d/Semestr 6/IAD/Zad1/Debug/Zadanie1.exe'
 
 usage() {
     echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS COFIGURATION"
@@ -29,6 +29,8 @@ for arg in "$@"; do
         exit 0
     fi
 done
+
+count="1"
 
 while (("$#")); do
     case "$1" in
@@ -63,11 +65,11 @@ while (("$#")); do
         *) # preserve positional arguments
             PARAM="$PARAMS $1"
             
-            CONFIG+="$1"
+            # CONFIG+="$1"
             shift
-            if [[ "$#" > 0 ]]; then
-                CONFIG+=" "
-            fi
+            # if [[ "$#" > 0 ]]; then
+            #     CONFIG+=" "
+            # fi
             ;;
     esac
 done
@@ -77,7 +79,11 @@ eval set -- "$PARAMS"
 
 echo $PARAMS
 
-for i in $( eval echo {0..$count} )
+for c in $( eval echo {1..$count} )
 do
-    $programpath "$learningRate" "$momentum" "$epochs" "$bias" "$CONFIG"
+    # for i in {1..3};
+    # do
+        CONFIG="4 2 4"
+        "$programpath" "$learningRate" "$momentum" "$epochs" "$bias" "$c""output_learningRate_""$learningRate""_momentum_""$momentum""_bias_""$bias""_config_""$CONFIG"".txt" "$CONFIG" 
+    # done
 done

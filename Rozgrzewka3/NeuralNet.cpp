@@ -26,8 +26,9 @@ std::vector<double> NeuralNet::GetValuesFromMap(const std::vector<std::pair<doub
 
 NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate, const double &momentum, const bool &bias) : leariningRate(learningRate)
 {
+	IActivationFunction * identity = new IdentityFunction();
 	int layersCount = layersConfiguration.size();
-	CreateInputLayer(layersConfiguration[0], func, bias);
+	CreateInputLayer(layersConfiguration[0], identity, bias);
 	for (int i = 1; i < layersCount - 1; i++)
 	{
 		Layer layer = Layer(layersConfiguration[i], func, false, bias);
@@ -93,13 +94,28 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 
 	std::cout << "--Output--" << std::endl;
 
+
+	std::cout << "Input: ";
 	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
 	{
-		std::cout.precision(17);
-		std::cout << "Input:     " << std::fixed << GetKeysFromMap(initData)[i] << std::endl;
-		std::cout << "Expected:  " << std::fixed << GetValuesFromMap(initData)[i] << std::endl;
-		std::cout << "Predicted: " << std::fixed << outputLayer.GetNeurons()[i]->output << std::endl << std::endl;
+		std::cout.precision(precision);
+		std::cout << std::fixed << GetKeysFromMap(initData)[i] << " ";
+		/*<< ", Expected:  " << std::fixed << GetValuesFromMap(initData)[i] 
+		<< ", Predicted: " << std::fixed << outputLayer.GetNeurons()[i]->output << std::endl << std::endl;*/
 	}
+	std::cout << std::endl << "Expected: ";
+	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
+	{
+		std::cout.precision(precision);
+		std::cout << std::fixed << GetValuesFromMap(initData)[i] << " ";
+	}
+	std::cout << std::endl << "Predicted: ";
+	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
+	{
+		std::cout.precision(precision);
+		std::cout << std::fixed << outputLayer.GetNeurons()[i]->output << " ";
+	}
+	std::cout << std::endl << std::endl;
 }
 
 void NeuralNet::ComputeOutputLayerError(const Layer &outputLayer, const std::vector<std::pair<double, double>> &initData)
