@@ -17,6 +17,8 @@ public:
 
 	double ComputeError(const std::vector<std::pair<double, double>> &initData);
 
+	Layer& GetHiddenLayer();
+
 private:
 
 	std::vector<Layer> layers;
