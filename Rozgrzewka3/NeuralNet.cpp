@@ -155,5 +155,5 @@ void NeuralNet::SetMomentum(const double& momentum)
 
 Layer& NeuralNet::GetHiddenLayer()
 {
-	return layers[1];
+	return layers[layers.size() - 2];
 }

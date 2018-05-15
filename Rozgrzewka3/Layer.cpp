@@ -17,7 +17,7 @@ Layer::Layer(const int &neuronsCount, IActivationFunction *activation, bool isIn
 			neurons.push_back(new Neuron(activation));
 		}
 	}
-	if (isWithBias)
+	if (isWithBias && isInputLayer)
 	{
 		InputNeuron *n = new InputNeuron(activation, true);
 		n->initialInput = 1;

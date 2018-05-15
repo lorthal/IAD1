@@ -19,7 +19,10 @@ usage() {
 #     done
 # }
 
-CONFIG=""
+CONFIG="4 2 4"
+hidden="false"
+outputPath=""
+count=1
 
 # Parse args
 scriptname=$(basename "$0")
@@ -54,6 +57,18 @@ while (("$#")); do
             count=$2
             shift 2
             ;;
+        -C|--config)
+            CONFIG=$2
+            shift 2
+            ;;
+        -h|--hidden)
+            hidden=$2
+            shift 2
+            ;;
+        -op|--outputPath)
+            outputPath="$2""learningRate_""$learningRate""_momentum_""$momentum""_e_""$epochs"
+            shift 2
+            ;;
         --) #end parsing
             shift
             break
@@ -79,11 +94,16 @@ eval set -- "$PARAMS"
 
 echo $PARAMS
 
+if [[ $outputPath != "" ]] ; then
+    mkdir "$outputPath"
+    outputPath="learningRate_""$learningRate""_momentum_""$momentum""_e_""$epochs""/"  
+fi
+
+
 for c in $( eval echo {1..$count} )
 do
-    # for i in {1..3};
-    # do
-        CONFIG="4 2 4"
-        "$programpath" "$learningRate" "$momentum" "$epochs" "$bias" "$c""output_learningRate_""$learningRate""_momentum_""$momentum""_bias_""$bias""_config_""$CONFIG"".txt" "$CONFIG" 
-    # done
+    for i in {1.."$count"};
+    do
+        "$programpath" "$learningRate" "$momentum" "$epochs" "$bias" "$outputPath""$c""output_learningRate_""$learningRate""_momentum_""$momentum""_bias_""$bias""_config_""$CONFIG"".txt" $hidden $CONFIG 
+    done
 done
