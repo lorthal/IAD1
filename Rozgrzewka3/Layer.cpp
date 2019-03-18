@@ -17,7 +17,7 @@ Layer::Layer(const int &neuronsCount, IActivationFunction *activation, bool isIn
 			neurons.push_back(new Neuron(activation));
 		}
 	}
-	if (isWithBias && isInputLayer)
+	if (isWithBias)
 	{
 		InputNeuron *n = new InputNeuron(activation, true);
 		n->initialInput = 1;
@@ -43,7 +43,7 @@ void Layer::SetConnections(const Layer &previousLayer)
 			{
 				continue;
 			}
-			double weight = static_cast<double>(rand() / static_cast<double>(RAND_MAX / (1 - (-1))));
+			double weight = -1 + static_cast<double>(rand() / static_cast<double>(RAND_MAX / (1 - (-1))));
 			Neuron& n = *previousLayer.neurons[i];
 			Connection connection = Connection(&n, weight);
 			neurons[j]->AddConnection(connection);

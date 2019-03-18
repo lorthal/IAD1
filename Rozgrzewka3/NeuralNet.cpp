@@ -157,3 +157,18 @@ Layer& NeuralNet::GetHiddenLayer()
 {
 	return layers[layers.size() - 2];
 }
+
+std::vector<double> NeuralNet::Test(const std::vector<std::pair<double, double>>& testData)
+{
+	InitInputLayer(testData);
+	Predict(layers.back(), testData);
+
+	std::vector<double> output;
+
+	for (auto neuron : layers.back().GetNeurons())
+	{
+		output.push_back(neuron->output);
+	}
+
+	return output;
+}

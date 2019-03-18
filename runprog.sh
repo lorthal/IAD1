@@ -7,18 +7,6 @@ usage() {
     echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS COFIGURATION"
 }
 
-# runprog()
-# {
-#     for filename in *; do
-#         if [[ -f "$filename" && "$filename" =~ $init_filename_regex ]]; then
-#             filename_root="${filename%.txt}_${1}_${2,,}"
-#             sol_filename="${filename_root}_sol.txt"
-#             stats_filename="${filename_root}_stats.txt"
-#             $programpath "$1" "$2" "$filename" "$sol_filename" "$stats_filename"
-#         fi
-#     done
-# }
-
 CONFIG="4 2 4"
 hidden="false"
 outputPath=""

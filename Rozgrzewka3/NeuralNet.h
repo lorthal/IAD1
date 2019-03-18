@@ -19,6 +19,8 @@ public:
 
 	Layer& GetHiddenLayer();
 
+	std::vector<double> Test(const std::vector<std::pair<double, double>> &testData);
+
 private:
 
 	std::vector<Layer> layers;
