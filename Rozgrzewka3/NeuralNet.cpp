@@ -24,7 +24,7 @@ std::vector<double> NeuralNet::GetValuesFromMap(const std::vector<std::pair<doub
 	return  v;
 }
 
-NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate, const double &momentum, const bool &bias) : leariningRate(learningRate)
+NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, IActivationFunction *funcout, const double &learningRate, const double &momentum, const bool &bias) : leariningRate(learningRate)
 {
 	IActivationFunction * identity = new IdentityFunction();
 	int layersCount = layersConfiguration.size();
@@ -35,7 +35,7 @@ NeuralNet::NeuralNet(const std::vector<int> &layersConfiguration, IActivationFun
 		layer.SetConnections(layers.back());
 		layers.push_back(layer);
 	}
-	CreateOutputLayer(layersConfiguration[layersCount - 1], func);
+	CreateOutputLayer(layersConfiguration[layersCount - 1], funcout);
 
 	SetMomentum(momentum);
 }

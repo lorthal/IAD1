@@ -11,7 +11,7 @@ public:
 
 	static std::vector<double> GetValuesFromMap(const std::vector<std::pair<double, double>> &map);
 
-	NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, const double &learningRate, const double &momentum, const bool &bias);
+	NeuralNet(const std::vector<int> &layersConfiguration, IActivationFunction *func, IActivationFunction *funcout, const double &learningRate, const double &momentum, const bool &bias);
 
 	void Train(const std::vector<std::pair<double, double>> &initData);
 
