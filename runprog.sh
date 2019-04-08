@@ -4,11 +4,12 @@
 programpath='/mnt/d/Semestr 6/IAD/Zad1/Debug/Zadanie1.exe'
 
 usage() {
-    echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS COFIGURATION"
+    echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS(true, false) -c|--count COUNT -C|--config COFIGURATION -h|--hidden OUTPUT_HIDDEN_LAYER(true, false) -op|--outputPath PATH -f|--filename TRAINING_SET_PATH"
 }
 
 CONFIG="4 2 4"
 hidden="false"
+filename="transformation.txt"
 outputPath=""
 count=1
 
@@ -57,6 +58,10 @@ while (("$#")); do
             outputPath="$2""learningRate_""$learningRate""_momentum_""$momentum""_e_""$epochs"
             shift 2
             ;;
+        -f|--filename)
+            filename=$2
+            shift 2
+            ;;
         --) #end parsing
             shift
             break
@@ -92,6 +97,6 @@ for c in $( eval echo {1..$count} )
 do
     for i in {1.."$count"};
     do
-        "$programpath" "$learningRate" "$momentum" "$epochs" "$bias" "$outputPath""$c""output_learningRate_""$learningRate""_momentum_""$momentum""_bias_""$bias""_config_""$CONFIG"".txt" $hidden $CONFIG 
+        "$programpath" "$learningRate" "$momentum" "$epochs" "$bias" "$outputPath""$c""output_learningRate_""$learningRate""_momentum_""$momentum""_bias_""$bias""_config_""$CONFIG"".txt" $hidden $filename $CONFIG 
     done
 done
