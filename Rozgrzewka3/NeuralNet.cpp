@@ -92,7 +92,7 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 		}
 	}
 
-	std::cout << "--Output--" << std::endl;
+	/*std::cout << "--Output--" << std::endl;
 
 
 	std::cout << "Input: ";
@@ -101,7 +101,7 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 		std::cout.precision(precision);
 		std::cout << std::fixed << GetKeysFromMap(initData)[i] << " ";
 		/*<< ", Expected:  " << std::fixed << GetValuesFromMap(initData)[i] 
-		<< ", Predicted: " << std::fixed << outputLayer.GetNeurons()[i]->output << std::endl << std::endl;*/
+		<< ", Predicted: " << std::fixed << outputLayer.GetNeurons()[i]->output << std::endl << std::endl;* /
 	}
 	std::cout << std::endl << "Expected: ";
 	for (int i = 0; i < outputLayer.GetNeurons().size(); i++)
@@ -115,7 +115,7 @@ void NeuralNet::Predict(const Layer &outputLayer, const std::vector<std::pair<do
 		std::cout.precision(precision);
 		std::cout << std::fixed << outputLayer.GetNeurons()[i]->output << " ";
 	}
-	std::cout << std::endl << std::endl;
+	std::cout << std::endl << std::endl;*/
 }
 
 void NeuralNet::ComputeOutputLayerError(const Layer &outputLayer, const std::vector<std::pair<double, double>> &initData)
