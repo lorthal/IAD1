@@ -5,7 +5,7 @@ programpath='./x64/Debug/Zadanie1.exe'
 respath='./../Zad1Res/'
 
 usage() {
-    echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS(true, false) -c|--count COUNT -C|--config COFIGURATION -h|--hidden OUTPUT_HIDDEN_LAYER(true, false) -op|--outputPath PATH -f|--filename TRAINING_SET_PATH"
+    echo "Usage: $scriptname -l|--learningRate LEARNING-RATE -e|--epochs EPOCHS -m|--momentum MOMENTUM -b|--bias BIAS(true, false) -c|--count COUNT -C|--config COFIGURATION -h|--hidden OUTPUT_HIDDEN_LAYER(true, false)(for approximation it defines if output is error 'false' or function 'true') -op|--outputPath PATH -f|--filename TRAINING_SET_PATH"
 }
 
 CONFIG="4 2 4"
