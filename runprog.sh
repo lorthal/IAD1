@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #enter path to program here
-programpath='./Debug/Zadanie1.exe'
+programpath='./x64/Debug/Zadanie1.exe'
 respath='./../Zad1Res/'
 
 usage() {
