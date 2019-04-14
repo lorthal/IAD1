@@ -1,6 +1,6 @@
 #!/bin/bash
 
-p="/mnt/d/Semestr 6/IAD/Zad1"
+p="."
 
 "$p""/runprog.sh" -l 0.1 -m 0 -b false -e 5000 -C "4 1 4"
 "$p""/runprog.sh" -l 0.1 -m 0 -b false -e 5000 -C "4 2 4"

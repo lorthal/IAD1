@@ -1,6 +1,6 @@
 #!/bin/bash
 
-p="./"
+p="."
 
 for i in {1..20};
 do
